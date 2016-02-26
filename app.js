@@ -9,6 +9,9 @@ var index = require('./routes/index');
 
 var app = express();
 
+// Connect to database
+mongoose.connect('mongodb://user:olinjs@ds017678.mlab.com:17678/dinowiki')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
