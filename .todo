@@ -1,0 +1,18 @@
+
+Backend
+	Routes
+		- GET /api/dinos - returns all dinos
+		- POST /api/dinos - make new dino
+		- PUT /api/dinos - edit existing dino
+		- DELETE /api/dinos - delete existing dino
+
+	Hosting
+		- Make sure everything is good for hosting
+
+Frontend
+	Design
+		- Do this.
+	React 
+		- Do this too.
+
+
