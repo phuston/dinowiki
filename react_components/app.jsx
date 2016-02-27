@@ -60,6 +60,8 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoEdit: function(editDino){
+		var oldDinos = this.state.dinos;
+
 		// Optimistic updating of Dinos
     var editedDinos = this.state.dinos.map(function(dino){
       if (dino.id == editDino.id) {
@@ -67,6 +69,8 @@ var DinoApp = React.createClass({
       }
       return dino;
     });
+
+    this.setState({dinos: editedDinos})
 
     $.ajax({
     	url: this.props.url,
@@ -82,9 +86,28 @@ var DinoApp = React.createClass({
     })
 	},
 
-	handleDinoDelete: function(dino){
+	handleDinoDelete: function(deleteDino){
+		var oldDinos = this.state.dinos;
 
-	},
+		var deletedDinos = this.state.dinos.filter(function(dino){
+			return dino.id != deleteDino.id;
+		});
+
+		this.setState({dinos: deletedDinos});
+
+		$.ajax({
+			url: this.props.url,
+			type: 'DELETE',
+			dataType: 'json',
+			data: deleteDino,
+			success: function(response){
+				// TODO: What is this response?
+			}.bind(this),
+			error: function(xhr, status, err){
+				console.error(this.props.url, status, err.toString());
+			}.bind(this)
+		})
+	}
 
 
 });
