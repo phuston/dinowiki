@@ -35,16 +35,6 @@ var DinoApp = React.createClass({
 
 		this.setState({dinos: optimisticDinos});
 
-		// $.post(this.props.url, newTodo)
-  //     .done(function(newDino, status){
-  //         console.log('successful save!');
-  //         this.setState({dinos: [newDino].concat(oldDinos)});
-  //     }.bind(this))
-  //     .error(function(data, status){
-  //         this.setState({todos: oldTodos});
-  //         console.error(data);
-  //     });
-
     $.ajax({
     	url: this.props.url,
     	type: 'POST',
@@ -66,6 +56,7 @@ var DinoApp = React.createClass({
     var editedDinos = this.state.dinos.map(function(dino){
       if (dino.id == editDino.id) {
         dino.content = editDino.content;
+        dino.votes = editDino.votes;
       }
       return dino;
     });
@@ -107,6 +98,10 @@ var DinoApp = React.createClass({
 				console.error(this.props.url, status, err.toString());
 			}.bind(this)
 		})
+	},
+
+	render: function(){
+
 	}
 
 
