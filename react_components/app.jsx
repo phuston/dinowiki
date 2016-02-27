@@ -59,8 +59,27 @@ var DinoApp = React.createClass({
     })
 	},
 
-	handleDinoEdit: function(dino){
+	handleDinoEdit: function(editDino){
+		// Optimistic updating of Dinos
+    var editedDinos = this.state.dinos.map(function(dino){
+      if (dino.id == editDino.id) {
+        dino.content = editDino.content;
+      }
+      return dino;
+    });
 
+    $.ajax({
+    	url: this.props.url,
+    	type: 'PUT',
+    	dataType: 'json',
+    	data: editDino,
+    	success: function(editedDino){
+    		// TODO: Do we actually need this?
+    	}.bind(this),
+    	error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    })
 	},
 
 	handleDinoDelete: function(dino){
