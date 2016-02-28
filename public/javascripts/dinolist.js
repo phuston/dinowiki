@@ -8,7 +8,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 
 	// Show dino in dinodetail
 	handleDinoClick: function(dino) {
-		console.log(dino);
+		// console.log(dino);
 		this.props.onDisplayDino(dino);
 	},
 
@@ -19,7 +19,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 	render: function() {
 		var dinoList = this.props.dinos.map(function(dino, i){
 			return (
-				React.createElement("li", {onClick: this.handleDinoClick(dino), key: i}, 
+				React.createElement("li", {onClick: this.handleDinoClick.bind(this, dino), key: i}, 
 					dino.species
 				)
 			);

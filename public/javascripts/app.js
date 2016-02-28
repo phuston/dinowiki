@@ -109,6 +109,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
   },
 
   showDinoDetail: function(dino) {
+    // console.log(dino);
     this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
   },
 
@@ -119,18 +120,21 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     switch(this.state.detailDisplay){
       case DISPLAY_NONE:
         detail = (
-          React.createElement("h1", null, "DETAIL")
+          React.createElement("h1", null, "LOGO OR SOMETHING")
         )
+        break;
 
       case DISPLAY_FORM: 
         detail = (
           React.createElement("h1", null, "FORM")
         )
+        break;
 
       case DISPLAY_DINO:
         detail = (
           React.createElement("h1", null, "DINO")
         )
+        break;
     }
 
     return (
@@ -164,7 +168,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 
 	// Show dino in dinodetail
 	handleDinoClick: function(dino) {
-		console.log(dino);
+		// console.log(dino);
 		this.props.onDisplayDino(dino);
 	},
 
@@ -175,7 +179,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 	render: function() {
 		var dinoList = this.props.dinos.map(function(dino, i){
 			return (
-				React.createElement("li", {onClick: this.handleDinoClick(dino), key: i}, 
+				React.createElement("li", {onClick: this.handleDinoClick.bind(this, dino), key: i}, 
 					dino.species
 				)
 			);

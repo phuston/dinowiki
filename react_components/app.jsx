@@ -108,6 +108,7 @@ var DinoApp = React.createClass({
   },
 
   showDinoDetail: function(dino) {
+    // console.log(dino);
     this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
   },
 
@@ -118,18 +119,21 @@ var DinoApp = React.createClass({
     switch(this.state.detailDisplay){
       case DISPLAY_NONE:
         detail = (
-          <h1>DETAIL</h1>
+          <h1>LOGO OR SOMETHING</h1>
         )
+        break;
 
       case DISPLAY_FORM: 
         detail = (
           <h1>FORM</h1>
         )
+        break;
 
       case DISPLAY_DINO:
         detail = (
           <h1>DINO</h1>
         )
+        break;
     }
 
     return (
