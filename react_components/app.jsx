@@ -1,12 +1,15 @@
+var DinoList = require('./dinolist.jsx');
 
+var DISPLAY_NONE = 'none';
+var DISPLAY_DINO = 'dino';
+var DISPLAY_FORM = 'form';
 
 var DinoApp = React.createClass({
 	getInitialState: function() {
     return {
-      nowShowing: ALL_TODOS,
-      editing: null,
-      newTodo: '',
-      todos: []
+      detailDisplay: DISPLAY_NONE,
+      dinos: [],
+      displayDino: {}
     }
   },
 
@@ -100,8 +103,47 @@ var DinoApp = React.createClass({
 		})
 	},
 
+  showDinoForm: function() {
+    this.setState({detailDisplay: DISPLAY_FORM});
+  },
+
+  showDinoDetail: function(dino) {
+    this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
+  },
+
 	render: function(){
 
+    var detail;
+
+    switch(this.state.detailDisplay){
+      case DISPLAY_NONE:
+        detail = (
+          <h1>DETAIL</h1>
+        )
+
+      case DISPLAY_FORM: 
+        detail = (
+          <h1>FORM</h1>
+        )
+
+      case DISPLAY_DINO:
+        detail = (
+          <h1>DINO</h1>
+        )
+    }
+
+    return (
+      <div>
+        <DinoList
+          dinos={this.state.dinos}
+          onAddDino={this.showDinoForm}
+          onDisplayDino={this.showDinoDetail}
+        />
+        <div id="detail-container">
+          {detail}
+        </div>
+      </div>
+    )
 	}
 
 

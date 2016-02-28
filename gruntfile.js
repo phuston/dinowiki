@@ -17,6 +17,14 @@ module.exports = function(grunt) {
 			app: {
 				src: ['react_components/app.jsx'],
 				dest: 'public/javascripts/app.js'
+			},
+			dinodetail: {
+				src: ['react_components/dinodetail.jsx'],
+				dest: 'public/javascripts/dinodetail.js'
+			},
+			dinolist: {
+				src: ['react_components/dinolist.jsx'],
+				dest: 'public/javascripts/dinolist.js'
 			}
 		}
 	});
