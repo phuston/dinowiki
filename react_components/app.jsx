@@ -1,4 +1,5 @@
 var DinoList = require('./dinolist.jsx');
+var DinoDetail = require('./dinodetail.jsx');
 
 var DISPLAY_NONE = 'none';
 var DISPLAY_DINO = 'dino';
@@ -108,7 +109,6 @@ var DinoApp = React.createClass({
   },
 
   showDinoDetail: function(dino) {
-    // console.log(dino);
     this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
   },
 
@@ -131,7 +131,9 @@ var DinoApp = React.createClass({
 
       case DISPLAY_DINO:
         detail = (
-          <h1>DINO</h1>
+          <DinoDetail
+            dino={this.state.displayDino}
+          />
         )
         break;
     }
@@ -143,7 +145,7 @@ var DinoApp = React.createClass({
           onAddDino={this.showDinoForm}
           onDisplayDino={this.showDinoDetail}
         />
-        <div id="detail-container">
+        <div id="main-container">
           {detail}
         </div>
       </div>

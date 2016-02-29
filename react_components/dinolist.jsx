@@ -39,6 +39,6 @@ var DinoList = React.createClass({
 			</div>
 		)
 	}
-})
+});
 
 module.exports = DinoList;

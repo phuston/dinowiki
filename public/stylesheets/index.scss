@@ -20,3 +20,21 @@ $element-color: #bdc3c7;
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+#dino-list-container {
+	padding: 5px;
+	float: left;
+	width: 25%;
+	background: $background-color;
+	border-radius: 2px;
+	overflow:hidden;
+}
+
+#main-container {
+	padding: 5px;
+	float: right;
+	width: 70%;
+	background: $background-color;
+	border-radius: 2px;
+	overflow:hidden;
+}

@@ -14,4 +14,20 @@
   top: 50%;
   transform: translateY(-50%); }
 
+#dino-list-container {
+  padding: 5px;
+  float: left;
+  width: 25%;
+  background: #ecf0f1;
+  border-radius: 2px;
+  overflow: hidden; }
+
+#main-container {
+  padding: 5px;
+  float: right;
+  width: 70%;
+  background: #ecf0f1;
+  border-radius: 2px;
+  overflow: hidden; }
+
 /*# sourceMappingURL=index.css.map */

@@ -40,7 +40,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 			)
 		)
 	}
-})
+});
 
 module.exports = DinoList;
 },{}]},{},[1]);
