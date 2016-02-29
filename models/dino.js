@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var Dino = new Schema({
 	species: {type: String, required: true, unique: true},
-	content: {type: String, required: true},
+	content: {type: String},
 	upvotes: {type: Number, default: 0, required: true},
 	downvotes: {type: Number, default: 0, required: true},
 	img: {type: String}

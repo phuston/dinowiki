@@ -1,6 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
+var DinoForm = require('./dinoForm.jsx');
 
 var DISPLAY_NONE = 'none';
 var DISPLAY_DINO = 'dino';
@@ -35,8 +36,10 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
 	handleDinoSubmit: function(newDino){
+    console.log(newDino);
 		var oldDinos = this.state.dinos;
 		var optimisticDinos = [newDino].concat(this.state.dinos);
+    console.log(optimisticDinos);
 
 		this.setState({dinos: optimisticDinos});
 
@@ -46,6 +49,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     	dataType: 'json',
     	data: newDino,
     	success: function(newDino){
+        console.log(newDino);
     		this.setState({dinos: [newDino].concat(oldDinos)});
     	}.bind(this),
 			error: function(xhr, status, err) {
@@ -125,9 +129,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
         break;
 
       case DISPLAY_FORM: 
-        detail = (
-          React.createElement("h1", null, "FORM")
-        )
+        detail = React.createElement(DinoForm, {onDino: this.handleDinoSubmit});
         break;
 
       case DISPLAY_DINO:
@@ -160,24 +162,78 @@ ReactDOM.render(
   React.createElement(DinoApp, {url: "/api/dinos", pollInterval: 2000}),
   document.getElementById('content')
 );
-},{"./dinodetail.jsx":2,"./dinolist.jsx":3}],2:[function(require,module,exports){
-var DinoDetail = React.createClass({displayName: "DinoDetail",
+},{"./dinoForm.jsx":2,"./dinodetail.jsx":3,"./dinolist.jsx":4}],2:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+	    return {
+	    	species: '',
+	    	content: '',
+	    };
+	},
+	changeSpecies: function(ev) {
+		this.setState({
+			species: ev.target.value
+		});
+	},
+	changeContent: function(ev) {
+		this.setState({
+			content: ev.target.value
+		});
+	},
+	addDino: function(ev) {
+		ev.preventDefault();
 
+		if (this.state.species.length == 0) {
+			// Show error message?
+			return;
+		}
+
+		this.props.onDino({
+			species: this.state.species,
+			content: this.state.content
+		});
+
+		this.setState({
+			species: '',
+			content: ''
+		});
+
+		// console.log(this.state.name, this.state.content);
+	},
+	render: function() {
+		return (
+			React.createElement("form", {id: "addForm", onSubmit: this.addDino}, 
+				React.createElement("div", null, 
+					React.createElement("div", null, React.createElement("input", {type: "text", id: "species", value: this.state.species, onChange: this.changeSpecies, placeholder: "New dino's name"}))
+				), 
+				React.createElement("div", null, 
+					React.createElement("textarea", {rows: "4", cols: "40", value: this.state.content, onChange: this.changeContent, placeholder: "Fun facts about this dino"})
+				), 
+				React.createElement("div", null, 
+					React.createElement("button", null, "Add Dino!")
+				)
+			)
+		);
+	}
+})
+},{}],3:[function(require,module,exports){
+var DinoDetail = React.createClass({displayName: "DinoDetail",
 	render: function(){
 		return (
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement("h1", null, this.props.dino.species), 
-				React.createElement("p", null, this.props.dino.content)
+				React.createElement("p", null, this.props.dino.content), 
+				React.createElement("button", null, "+1"), 
+				React.createElement("button", null, "-1"), 
+				React.createElement("button", null, "Delete")
 			)
 		)
 	}
 });
 
 module.exports = DinoDetail;
-},{}],3:[function(require,module,exports){
-
+},{}],4:[function(require,module,exports){
 var DinoList = React.createClass({displayName: "DinoList",
-
 	componentDidMount: function() {
 	    return
 	},

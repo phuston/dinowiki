@@ -1,5 +1,6 @@
 var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
+var DinoForm = require('./dinoForm.jsx');
 
 var DISPLAY_NONE = 'none';
 var DISPLAY_DINO = 'dino';
@@ -34,8 +35,10 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoSubmit: function(newDino){
+    console.log(newDino);
 		var oldDinos = this.state.dinos;
 		var optimisticDinos = [newDino].concat(this.state.dinos);
+    console.log(optimisticDinos);
 
 		this.setState({dinos: optimisticDinos});
 
@@ -45,6 +48,7 @@ var DinoApp = React.createClass({
     	dataType: 'json',
     	data: newDino,
     	success: function(newDino){
+        console.log(newDino);
     		this.setState({dinos: [newDino].concat(oldDinos)});
     	}.bind(this),
 			error: function(xhr, status, err) {
@@ -124,9 +128,7 @@ var DinoApp = React.createClass({
         break;
 
       case DISPLAY_FORM: 
-        detail = (
-          <h1>FORM</h1>
-        )
+        detail = <DinoForm onDino={this.handleDinoSubmit}/>;
         break;
 
       case DISPLAY_DINO:

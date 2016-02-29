@@ -1,6 +1,4 @@
-
 var DinoList = React.createClass({
-
 	componentDidMount: function() {
 	    return
 	},
