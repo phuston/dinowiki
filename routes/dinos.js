@@ -19,7 +19,6 @@ router.post('/', function(req, res, next) {
 	var info = req.body;
 	(new Dino(req.body)).save(function(err, dino) {
 		if (!err) {
-			console.log(dino);
 			res.send(dino);
 		} else {
 			console.log(err);
