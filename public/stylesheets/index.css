@@ -1,0 +1,33 @@
+#page-wrap {
+  width: 65%;
+  margin: 0 auto; }
+
+#navbar {
+  text-align: center;
+  border-radius: 5px;
+  height: 100px;
+  background-color: #3498db;
+  width: 100%; }
+
+#navbar h1 {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+#dino-list-container {
+  padding: 5px;
+  float: left;
+  width: 25%;
+  background: #ecf0f1;
+  border-radius: 2px;
+  overflow: hidden; }
+
+#main-container {
+  padding: 5px;
+  float: right;
+  width: 70%;
+  background: #ecf0f1;
+  border-radius: 2px;
+  overflow: hidden; }
+
+/*# sourceMappingURL=index.css.map */
