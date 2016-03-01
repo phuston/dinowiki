@@ -95,7 +95,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos});
+		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
