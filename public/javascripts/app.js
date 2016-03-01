@@ -87,10 +87,12 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
 	handleDinoDelete: function(deleteDino){
+    console.log(deleteDino)
+
 		var oldDinos = this.state.dinos;
 
 		var deletedDinos = this.state.dinos.filter(function(dino){
-			return dino.id != deleteDino.id;
+			return dino._id != deleteDino._id;
 		});
 
 		this.setState({dinos: deletedDinos});
@@ -135,7 +137,8 @@ var DinoApp = React.createClass({displayName: "DinoApp",
       case DISPLAY_DINO:
         detail = (
           React.createElement(DinoDetail, {
-            dino: this.state.displayDino}
+            dino: this.state.displayDino, 
+            handleDinoDelete: this.handleDinoDelete}
           )
         )
         break;
@@ -218,6 +221,12 @@ module.exports = React.createClass({displayName: "exports",
 })
 },{}],3:[function(require,module,exports){
 var DinoDetail = React.createClass({displayName: "DinoDetail",
+
+	handleDinoDelete: function(){
+		console.log("DELETING");
+		this.props.handleDinoDelete(this.props.dino);
+	},
+
 	render: function(){
 		return (
 			React.createElement("div", {id: "dino-detail-container"}, 
@@ -225,7 +234,7 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 				React.createElement("p", null, this.props.dino.content), 
 				React.createElement("button", null, "+1"), 
 				React.createElement("button", null, "-1"), 
-				React.createElement("button", null, "Delete")
+				React.createElement("button", {onClick: this.handleDinoDelete}, "Delete")
 			)
 		)
 	}

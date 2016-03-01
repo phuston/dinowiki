@@ -1,4 +1,10 @@
 var DinoDetail = React.createClass({
+
+	handleDinoDelete: function(){
+		console.log("DELETING");
+		this.props.handleDinoDelete(this.props.dino);
+	},
+
 	render: function(){
 		return (
 			<div id="dino-detail-container">
@@ -6,7 +12,7 @@ var DinoDetail = React.createClass({
 				<p>{this.props.dino.content}</p>
 				<button>+1</button>
 				<button>-1</button>
-				<button>Delete</button>
+				<button onClick={this.handleDinoDelete}>Delete</button>
 			</div>
 		)
 	}

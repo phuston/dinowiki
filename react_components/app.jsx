@@ -86,10 +86,12 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoDelete: function(deleteDino){
+    console.log(deleteDino)
+
 		var oldDinos = this.state.dinos;
 
 		var deletedDinos = this.state.dinos.filter(function(dino){
-			return dino.id != deleteDino.id;
+			return dino._id != deleteDino._id;
 		});
 
 		this.setState({dinos: deletedDinos});
@@ -135,6 +137,7 @@ var DinoApp = React.createClass({
         detail = (
           <DinoDetail
             dino={this.state.displayDino}
+            handleDinoDelete={this.handleDinoDelete}
           />
         )
         break;
