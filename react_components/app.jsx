@@ -58,6 +58,7 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoEdit: function(editDino){
+    console.log(editDino);
 		var oldDinos = this.state.dinos;
 
 		// Optimistic updating of Dinos
