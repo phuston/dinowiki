@@ -1,40 +1,86 @@
-$navbar-color: #3498db;
+$navbar-color: #FE5C5C;
 $background-color: #ecf0f1;
 $element-color: #bdc3c7;
 
+body {
+  font-family: 'Marvel', sans-serif;
+}
+
+button:focus {
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
+#logo {
+	margin: 7.5% 15%;
+}
+
 #page-wrap {
-     width: 65%;
-     margin: 0 auto;
+  width: 80%;
+  margin: 0 auto; 
 }
 
 #navbar {
-	text-align: center;
-	border-radius: 5px;
-	height:100px;
-	background-color:$navbar-color;
-	width:100%;
+  font-size: 50px;
+  text-align: center;
+  /*border-radius: 5px;*/
+  height: 100px;
+  background-color: $navbar-color;
+  width: 100%; 
+  margin-bottom: 2%;
 }
 
 #navbar h1 {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
 }
 
 #dino-list-container {
-	padding: 5px;
-	float: left;
-	width: 25%;
-	background: $background-color;
-	border-radius: 2px;
-	overflow:hidden;
+  padding: 5px;
+  float: left;
+  width: 25%;
+  background: $background-color;
+  border-radius: 2px;
+  overflow: hidden; 
+}
+
+#dino-list-header {
+  text-align: center;
+}
+
+#list-title {
+  width: 80%;
+  float: left;
+}
+
+#list-plus {
+  width: 20%;
+  float: left;
+}
+
+#dino-list {
+  clear: both;
+}
+
+#list-title h1 {
+  font-size: 30px;
+  display: inline;
+  /*margin: 0 2%;*/
+}
+
+button#add-dino {
+  height: 10% !important;
 }
 
 #main-container {
-	padding: 5px;
-	float: right;
-	width: 70%;
-	background: $background-color;
-	border-radius: 2px;
-	overflow:hidden;
+  padding: 5px;
+  float: right;
+  width: 70%;
+  background: $background-color;
+  border-radius: 2px;
+  overflow: hidden; 
 }

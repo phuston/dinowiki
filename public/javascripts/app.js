@@ -128,7 +128,9 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     switch(this.state.detailDisplay){
       case DISPLAY_NONE:
         detail = (
-          React.createElement("h1", null, "LOGO OR SOMETHING")
+          React.createElement("div", null, 
+            React.createElement("img", {id: "logo", src: "../images/dino.png", width: "70%"})
+          )
         )
         break;
 

@@ -127,7 +127,9 @@ var DinoApp = React.createClass({
     switch(this.state.detailDisplay){
       case DISPLAY_NONE:
         detail = (
-          <h1>LOGO OR SOMETHING</h1>
+          <div>
+            <img id='logo' src="../images/dino.png" width="70%"/>
+          </div>
         )
         break;
 
@@ -162,6 +164,6 @@ var DinoApp = React.createClass({
 });
 
 ReactDOM.render(
-  <DinoApp url="/api/dinos" pollInterval={2000} />,
+  <DinoApp url="/api/dinos" pollInterval={2} />,
   document.getElementById('content')
 );
