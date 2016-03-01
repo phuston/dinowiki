@@ -59,7 +59,6 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
 	handleDinoEdit: function(editDino){
-    console.log(editDino);
 		var oldDinos = this.state.dinos;
 
 		// Optimistic updating of Dinos
@@ -81,7 +80,6 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     	dataType: 'json',
     	data: editDino,
     	success: function(editedDino){
-        console.log(editedDino);
     		// TODO: Do we actually need this?
     	}.bind(this),
     	error: function(xhr, status, err) {
@@ -91,13 +89,15 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
 	handleDinoDelete: function(deleteDino){
+    console.log(deleteDino)
+
 		var oldDinos = this.state.dinos;
 
 		var deletedDinos = this.state.dinos.filter(function(dino){
-			return dino.id != deleteDino.id;
+			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos});
+		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
@@ -140,7 +140,8 @@ var DinoApp = React.createClass({displayName: "DinoApp",
         detail = (
           React.createElement(DinoDetail, {
             dino: this.state.displayDino, 
-            onEditDino: this.handleDinoEdit}
+            onEditDino: this.handleDinoEdit, 
+            handleDinoDelete: this.handleDinoDelete}
           )
         )
         break;
@@ -224,17 +225,18 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 	upvoteDino: function() {
 		var editedDino = Object.assign({}, this.props.dino);
 		editedDino.upvotes += 1;
-		console.log(this.props.dino, 'upvote');
-		console.log(editedDino, 'upvote');
 		this.props.onEditDino(editedDino);
 	},
 
 	downvoteDino: function() {
 		var editedDino = Object.assign({}, this.props.dino);
 		editedDino.downvotes += 1;
-		console.log(this.props.dino, 'downvote');
-		console.log(editedDino, 'downvote');
 		this.props.onEditDino(editedDino);
+	},
+
+	handleDinoDelete: function() {
+		console.log("DELETING");
+		this.props.handleDinoDelete(this.props.dino);
 	},
 
 	render: function(){
@@ -245,7 +247,7 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 				React.createElement("p", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
 				React.createElement("button", {onClick: this.upvoteDino}, "+1"), 
 				React.createElement("button", {onClick: this.downvoteDino}, "-1"), 
-				React.createElement("button", null, "Delete")
+				React.createElement("button", {onClick: this.handleDinoDelete}, "Delete")
 			)
 		)
 	}

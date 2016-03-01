@@ -3,17 +3,18 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 	upvoteDino: function() {
 		var editedDino = Object.assign({}, this.props.dino);
 		editedDino.upvotes += 1;
-		console.log(this.props.dino, 'upvote');
-		console.log(editedDino, 'upvote');
 		this.props.onEditDino(editedDino);
 	},
 
 	downvoteDino: function() {
 		var editedDino = Object.assign({}, this.props.dino);
 		editedDino.downvotes += 1;
-		console.log(this.props.dino, 'downvote');
-		console.log(editedDino, 'downvote');
 		this.props.onEditDino(editedDino);
+	},
+
+	handleDinoDelete: function() {
+		console.log("DELETING");
+		this.props.handleDinoDelete(this.props.dino);
 	},
 
 	render: function(){
@@ -24,7 +25,7 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 				React.createElement("p", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
 				React.createElement("button", {onClick: this.upvoteDino}, "+1"), 
 				React.createElement("button", {onClick: this.downvoteDino}, "-1"), 
-				React.createElement("button", null, "Delete")
+				React.createElement("button", {onClick: this.handleDinoDelete}, "Delete")
 			)
 		)
 	}

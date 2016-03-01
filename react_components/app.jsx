@@ -88,13 +88,15 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoDelete: function(deleteDino){
+    console.log(deleteDino)
+
 		var oldDinos = this.state.dinos;
 
 		var deletedDinos = this.state.dinos.filter(function(dino){
-			return dino.id != deleteDino.id;
+			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos});
+		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
@@ -138,6 +140,7 @@ var DinoApp = React.createClass({
           <DinoDetail
             dino={this.state.displayDino}
             onEditDino={this.handleDinoEdit}
+            handleDinoDelete={this.handleDinoDelete}
           />
         )
         break;

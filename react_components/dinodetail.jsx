@@ -11,6 +11,11 @@ var DinoDetail = React.createClass({
 		this.props.onEditDino(editedDino);
 	},
 
+	handleDinoDelete: function() {
+		console.log("DELETING");
+		this.props.handleDinoDelete(this.props.dino);
+	},
+
 	render: function(){
 		return (
 			<div id="dino-detail-container">
@@ -19,7 +24,7 @@ var DinoDetail = React.createClass({
 				<p>RATING: {this.props.dino.upvotes - this.props.dino.downvotes}</p>
 				<button onClick={this.upvoteDino}>+1</button>
 				<button onClick={this.downvoteDino}>-1</button>
-				<button>Delete</button>
+				<button onClick={this.handleDinoDelete}>Delete</button>
 			</div>
 		)
 	}
