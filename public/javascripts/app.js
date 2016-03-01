@@ -59,13 +59,16 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
 	handleDinoEdit: function(editDino){
+    console.log(editDino);
 		var oldDinos = this.state.dinos;
 
 		// Optimistic updating of Dinos
     var editedDinos = this.state.dinos.map(function(dino){
-      if (dino.id == editDino.id) {
+      if (dino._id == editDino._id) {
+        dino.species = dino.species;
         dino.content = editDino.content;
-        dino.votes = editDino.votes;
+        dino.upvotes = editDino.upvotes;
+        dino.downvotes = editDino.downvotes;
       }
       return dino;
     });
@@ -78,6 +81,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     	dataType: 'json',
     	data: editDino,
     	success: function(editedDino){
+        console.log(editedDino);
     		// TODO: Do we actually need this?
     	}.bind(this),
     	error: function(xhr, status, err) {
@@ -135,7 +139,8 @@ var DinoApp = React.createClass({displayName: "DinoApp",
       case DISPLAY_DINO:
         detail = (
           React.createElement(DinoDetail, {
-            dino: this.state.displayDino}
+            dino: this.state.displayDino, 
+            onEditDino: this.handleDinoEdit}
           )
         )
         break;
@@ -154,8 +159,6 @@ var DinoApp = React.createClass({displayName: "DinoApp",
       )
     )
 	}
-
-
 });
 
 ReactDOM.render(
@@ -218,13 +221,30 @@ module.exports = React.createClass({displayName: "exports",
 })
 },{}],3:[function(require,module,exports){
 var DinoDetail = React.createClass({displayName: "DinoDetail",
+	upvoteDino: function() {
+		var editedDino = Object.assign({}, this.props.dino);
+		editedDino.upvotes += 1;
+		console.log(this.props.dino, 'upvote');
+		console.log(editedDino, 'upvote');
+		this.props.onEditDino(editedDino);
+	},
+
+	downvoteDino: function() {
+		var editedDino = Object.assign({}, this.props.dino);
+		editedDino.downvotes += 1;
+		console.log(this.props.dino, 'downvote');
+		console.log(editedDino, 'downvote');
+		this.props.onEditDino(editedDino);
+	},
+
 	render: function(){
 		return (
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement("h1", null, this.props.dino.species), 
 				React.createElement("p", null, this.props.dino.content), 
-				React.createElement("button", null, "+1"), 
-				React.createElement("button", null, "-1"), 
+				React.createElement("p", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
+				React.createElement("button", {onClick: this.upvoteDino}, "+1"), 
+				React.createElement("button", {onClick: this.downvoteDino}, "-1"), 
 				React.createElement("button", null, "Delete")
 			)
 		)

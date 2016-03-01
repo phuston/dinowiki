@@ -62,9 +62,11 @@ var DinoApp = React.createClass({
 
 		// Optimistic updating of Dinos
     var editedDinos = this.state.dinos.map(function(dino){
-      if (dino.id == editDino.id) {
+      if (dino._id == editDino._id) {
+        dino.species = dino.species;
         dino.content = editDino.content;
-        dino.votes = editDino.votes;
+        dino.upvotes = editDino.upvotes;
+        dino.downvotes = editDino.downvotes;
       }
       return dino;
     });
@@ -135,6 +137,7 @@ var DinoApp = React.createClass({
         detail = (
           <DinoDetail
             dino={this.state.displayDino}
+            onEditDino={this.handleDinoEdit}
           />
         )
         break;
@@ -153,8 +156,6 @@ var DinoApp = React.createClass({
       </div>
     )
 	}
-
-
 });
 
 ReactDOM.render(

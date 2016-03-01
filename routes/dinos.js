@@ -30,11 +30,12 @@ router.post('/', function(req, res, next) {
 
 router.put('/', function(req, res, next) {
 	var info = req.body;
-	var dinoId = new ObjectId(info.id);
+	var dinoId = new ObjectId(info._id);
 
 	Dino.findOne({
 		'_id': dinoId
 	}, function(err, dino) {
+		console.log(dino);
 		if (!err) {
 			if (info.species) dino.species = info.species;
 			if (info.content) dino.content = info.content;
