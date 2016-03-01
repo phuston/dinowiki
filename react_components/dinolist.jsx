@@ -25,8 +25,8 @@ var DinoList = React.createClass({
 		return (
 			<div id="dino-list-container">
 				<div id="dino-list-header">
-					<h1>Dinos</h1>
-					<button className="add-dino" onClick={this.props.onAddDino}>+</button>
+					<div id='list-title'><h1>Dinos</h1></div>
+					<div id='list-plus'><button id="add-dino" onClick={this.props.onAddDino}>+</button></div>
 				</div>
 
 				<div id="dino-list">

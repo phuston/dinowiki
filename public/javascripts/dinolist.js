@@ -26,8 +26,8 @@ var DinoList = React.createClass({displayName: "DinoList",
 		return (
 			React.createElement("div", {id: "dino-list-container"}, 
 				React.createElement("div", {id: "dino-list-header"}, 
-					React.createElement("h1", null, "Dinos"), 
-					React.createElement("button", {className: "add-dino", onClick: this.props.onAddDino}, "+")
+					React.createElement("div", {id: "list-title"}, React.createElement("h1", null, "Dinos")), 
+					React.createElement("div", {id: "list-plus"}, React.createElement("button", {id: "add-dino", onClick: this.props.onAddDino}, "+"))
 				), 
 
 				React.createElement("div", {id: "dino-list"}, 
