@@ -152,6 +152,9 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 
     return (
       React.createElement("div", null, 
+        React.createElement("audio", {id: "audio", controls: true, autoPlay: true}, 
+          React.createElement("source", {src: "http://soundbible.com/grab.php?id=1782&type=mp3", type: "audio/mpeg"})
+        ), 
         React.createElement(DinoList, {
           dinos: this.state.dinos, 
           onAddDino: this.showDinoForm, 
@@ -166,7 +169,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 });
 
 ReactDOM.render(
-  React.createElement(DinoApp, {url: "/api/dinos", pollInterval: 2000}),
+  React.createElement(DinoApp, {url: "/api/dinos", pollInterval: 2}),
   document.getElementById('content')
 );
 },{"./dinoForm.jsx":2,"./dinodetail.jsx":3,"./dinolist.jsx":4}],2:[function(require,module,exports){
