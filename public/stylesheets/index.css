@@ -19,6 +19,9 @@ button:focus {
 input:focus {
   outline: 0; }
 
+#audio {
+  display: none; }
+
 #logo {
   margin: 7.5% 15%; }
 

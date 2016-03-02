@@ -19,6 +19,9 @@
     "mongoose": "^4.4.5",
     "morgan": "~1.6.1",
     "node-sass-middleware": "0.8.0",
-    "serve-favicon": "~2.3.0"
+    "nodemon": "^1.9.1",
+    "react": "^0.14.7",
+    "serve-favicon": "~2.3.0",
+    "soundmanager2": "^2.97.20150601-a"
   }
 }

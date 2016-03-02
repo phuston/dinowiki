@@ -154,6 +154,9 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 
     return (
       React.createElement("div", null, 
+        React.createElement("audio", {id: "audio", controls: true, autoPlay: true}, 
+          React.createElement("source", {src: "http://soundbible.com/grab.php?id=1782&type=mp3", type: "audio/mpeg"})
+        ), 
         React.createElement(DinoList, {
           dinos: this.state.dinos, 
           onAddDino: this.showDinoForm, 
