@@ -42,7 +42,7 @@ module.exports = React.createClass({
 					<div><input type='text' id='species' value={this.state.species} onChange={this.changeSpecies} placeholder="New dino's name"/></div>
 				</div>
 				<div>
-					<textarea rows='4' cols='40' value={this.state.content} onChange={this.changeContent} placeholder="Fun facts about this dino"></textarea>
+					<textarea rows='4' cols='100' value={this.state.content} onChange={this.changeContent} placeholder="Fun facts about this dino"></textarea>
 				</div>
 				<div>
 					<button>Add Dino!</button>

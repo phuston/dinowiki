@@ -2,11 +2,29 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
+		sass: {
+      dist: {
+        options: {
+            style: 'expanded'
+        },
+        files: {
+            'public/stylesheets/index.scss': 'public/stylesheets/index.css'
+        }
+      } 
+    },
+
 		watch: {
 			react: {
 				files: ['react_components/*/*.jsx'],
 				tasks: ['browserify']
-			}
+			},
+			css: {
+        files: ['public/stylesheets/*.scss'],
+        tasks: ['sass'],
+        options: {
+            spawn: false
+        }
+      } 
 		},
 
 		browserify: {
@@ -31,8 +49,9 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 
 	grunt.registerTask('default', [
-	'browserify'
+	'browserify', 'sass'
 	]);
 };

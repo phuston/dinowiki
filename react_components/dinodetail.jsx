@@ -35,10 +35,12 @@ var DinoDetail = React.createClass({
 			<div id="dino-detail-container">
 				<Editable onChange={this.changeSpecies} text={this.props.dino.species} tag={"h1"}/>
 				<Editable onChange={this.changeContent} text={this.props.dino.content} tag={"p"}/>
-				<p>RATING: {this.props.dino.upvotes - this.props.dino.downvotes}</p>
-				<button onClick={this.upvoteDino}>+1</button>
-				<button onClick={this.downvoteDino}>-1</button>
-				<button onClick={this.handleDinoDelete}>Delete</button>
+				<h2>RATING: {this.props.dino.upvotes - this.props.dino.downvotes}</h2>
+				<div className='buttons'>
+					<button className='upvote-button' onClick={this.upvoteDino}>+1</button>
+					<button className='downvote-button' onClick={this.downvoteDino}>-1</button>
+					<button className='delete-button' onClick={this.handleDinoDelete}>Delete</button>
+				</div>
 			</div>
 		)
 	}

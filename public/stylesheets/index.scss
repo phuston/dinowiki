@@ -1,9 +1,21 @@
-$navbar-color: #FE5C5C;
-$background-color: #ecf0f1;
-$element-color: #bdc3c7;
-
 body {
   font-family: 'Marvel', sans-serif;
+}
+
+button {
+  font-family: 'Marvel', sans-serif;
+}
+
+input {
+  font-family: 'Marvel', sans-serif;
+}
+
+textarea {
+  font-family: 'Marvel', sans-serif;
+}
+
+textarea:focus {
+  outline: 0;
 }
 
 button:focus {
@@ -15,72 +27,170 @@ input:focus {
 }
 
 #logo {
-	margin: 7.5% 15%;
+  margin: 7.5% 15%;
 }
 
 #page-wrap {
   width: 80%;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 #navbar {
-  font-size: 50px;
+  font-size: 80px;
   text-align: center;
-  /*border-radius: 5px;*/
   height: 100px;
-  background-color: $navbar-color;
-  width: 100%; 
+  width: 100%;
   margin-bottom: 2%;
 }
 
 #navbar h1 {
   position: relative;
   top: 50%;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
 }
 
 #dino-list-container {
   padding: 5px;
   float: left;
   width: 25%;
-  background: $background-color;
   border-radius: 2px;
-  overflow: hidden; 
-}
-
-#dino-list-header {
-  text-align: center;
-}
-
-#list-title {
-  width: 80%;
-  float: left;
+  overflow: hidden;
+  border-right: 1px solid black;
 }
 
 #list-plus {
-  width: 20%;
-  float: left;
+  width: 92%;
+  margin: 3% 4% 0%;
+}
+
+.dino-label {
+  padding: 4%;
+  background: #FF93AC;
+  margin: 1% 4%;
+  text-align: center;
+  font-size: 25px;
+}
+
+.dino-label:hover {
+  background: #FC3468;
 }
 
 #dino-list {
   clear: both;
 }
 
-#list-title h1 {
-  font-size: 30px;
-  display: inline;
-  /*margin: 0 2%;*/
+#add-dino {
+  background: #CCCCCC;
+  border: none;
+  width: 100%;
+  font-size: 23px;
+  padding-bottom: 1%;
+  font-weight: bold;
 }
 
-button#add-dino {
-  height: 10% !important;
+#add-dino:hover {
+  background: #777777;
 }
 
 #main-container {
   padding: 5px;
   float: right;
   width: 70%;
-  background: $background-color;
   border-radius: 2px;
-  overflow: hidden; 
+  overflow: hidden;
+}
+
+div#dino-detail-container h1 {
+  text-align: center;
+  font-size: 40px;
+}
+
+div#dino-detail-container h1:focus {
+  outline: 0;
+  background: #AAAAAA;
+}
+
+div#dino-detail-container p {
+  font-size: 25px;
+}
+
+div#dino-detail-container p:focus {
+  outline: 0;
+  background: #AAAAAA;
+}
+
+div#dino-detail-container h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+div#dino-detail-container button {
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0.1%;
+  width: 7%;
+}
+
+div.buttons {
+  text-align: center;
+}
+
+div#dino-detail-container button.upvote-button {
+  background: #7DF481;
+}
+
+div#dino-detail-container button.downvote-button {
+  background: #F6AA54;
+}
+
+div#dino-detail-container button.delete-button {
+  background: #FE5C5C;
+}
+
+div#dino-detail-container .upvote-button:hover {
+  background: #30AD23;
+}
+
+div#dino-detail-container .downvote-button:hover {
+  background: #F47D21;
+}
+
+div#dino-detail-container .delete-button:hover {
+  background: #BA0000;
+}
+
+form#addForm div {
+  text-align: center;
+}
+
+form#addForm input {
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.1s;
+  font-size: 40px;
+  width: 40%;
+  text-align: center;
+  margin: 4%;
+}
+
+form#addForm input:focus {
+  border-bottom: solid 4px #969696;
+}
+
+form#addForm textarea {
+  font-size: 25px;
+}
+
+form#addForm button {
+  background: #88AAFF;
+  font-size: 30px;
+  border: none;
+  margin-top: 2%;
+  padding: 1%;
+  color: #222222;
+}
+
+form#addForm button:hover {
+  background: #2277AA;
 }

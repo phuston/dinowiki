@@ -2,14 +2,16 @@ var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
 var DinoForm = require('./dinoForm.jsx');
 
-var DISPLAY_NONE = 'none';
-var DISPLAY_DINO = 'dino';
-var DISPLAY_FORM = 'form';
+var DisplayEnum = Object.freeze({
+  DISPLAY_NONE: 'none',
+  DISPLAY_DINO: 'dino',
+  DISPLAY_FORM: 'form'
+});
 
 var DinoApp = React.createClass({
 	getInitialState: function() {
     return {
-      detailDisplay: DISPLAY_NONE,
+      detailDisplay: DisplayEnum.DISPLAY_NONE,
       dinos: [],
       displayDino: {}
     }
@@ -17,7 +19,7 @@ var DinoApp = React.createClass({
 
   componentDidMount: function() {
     this.loadDinosFromServer();
-    setInterval(this.loadTodosFromServer, this.props.pollInterval);
+    setInterval(this.loadDinosFromServer, this.props.pollInterval);
   },
 
 	loadDinosFromServer: function() {
@@ -97,7 +99,7 @@ var DinoApp = React.createClass({
 			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
+		this.setState({dinos: deletedDinos, detailDisplay: DisplayEnum.DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
@@ -114,11 +116,11 @@ var DinoApp = React.createClass({
 	},
 
   showDinoForm: function() {
-    this.setState({detailDisplay: DISPLAY_FORM});
+    this.setState({detailDisplay: DisplayEnum.DISPLAY_FORM});
   },
 
   showDinoDetail: function(dino) {
-    this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
+    this.setState({detailDisplay: DisplayEnum.DISPLAY_DINO, displayDino: dino});
   },
 
 	render: function(){
@@ -126,7 +128,7 @@ var DinoApp = React.createClass({
     var detail;
 
     switch(this.state.detailDisplay){
-      case DISPLAY_NONE:
+      case DisplayEnum.DISPLAY_NONE:
         detail = (
           <div>
             <img id='logo' src="../images/dino.png" width="70%"/>
@@ -134,11 +136,11 @@ var DinoApp = React.createClass({
         )
         break;
 
-      case DISPLAY_FORM: 
+      case DisplayEnum.DISPLAY_FORM: 
         detail = <DinoForm onDino={this.handleDinoSubmit}/>;
         break;
 
-      case DISPLAY_DINO:
+      case DisplayEnum.DISPLAY_DINO:
         detail = (
           <DinoDetail
             dino={this.state.displayDino}
@@ -165,6 +167,6 @@ var DinoApp = React.createClass({
 });
 
 ReactDOM.render(
-  <DinoApp url="/api/dinos" pollInterval={2} />,
+  <DinoApp url="/api/dinos" pollInterval={500000} />,
   document.getElementById('content')
 );

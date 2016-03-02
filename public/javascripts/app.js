@@ -3,14 +3,16 @@ var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
 var DinoForm = require('./dinoForm.jsx');
 
-var DISPLAY_NONE = 'none';
-var DISPLAY_DINO = 'dino';
-var DISPLAY_FORM = 'form';
+var DisplayEnum = Object.freeze({
+  DISPLAY_NONE: 'none',
+  DISPLAY_DINO: 'dino',
+  DISPLAY_FORM: 'form'
+});
 
 var DinoApp = React.createClass({displayName: "DinoApp",
 	getInitialState: function() {
     return {
-      detailDisplay: DISPLAY_NONE,
+      detailDisplay: DisplayEnum.DISPLAY_NONE,
       dinos: [],
       displayDino: {}
     }
@@ -18,7 +20,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 
   componentDidMount: function() {
     this.loadDinosFromServer();
-    setInterval(this.loadTodosFromServer, this.props.pollInterval);
+    setInterval(this.loadDinosFromServer, this.props.pollInterval);
   },
 
 	loadDinosFromServer: function() {
@@ -98,7 +100,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
+		this.setState({dinos: deletedDinos, detailDisplay: DisplayEnum.DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
@@ -115,11 +117,11 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	},
 
   showDinoForm: function() {
-    this.setState({detailDisplay: DISPLAY_FORM});
+    this.setState({detailDisplay: DisplayEnum.DISPLAY_FORM});
   },
 
   showDinoDetail: function(dino) {
-    this.setState({detailDisplay: DISPLAY_DINO, displayDino: dino});
+    this.setState({detailDisplay: DisplayEnum.DISPLAY_DINO, displayDino: dino});
   },
 
 	render: function(){
@@ -127,7 +129,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     var detail;
 
     switch(this.state.detailDisplay){
-      case DISPLAY_NONE:
+      case DisplayEnum.DISPLAY_NONE:
         detail = (
           React.createElement("div", null, 
             React.createElement("img", {id: "logo", src: "../images/dino.png", width: "70%"})
@@ -135,11 +137,11 @@ var DinoApp = React.createClass({displayName: "DinoApp",
         )
         break;
 
-      case DISPLAY_FORM: 
+      case DisplayEnum.DISPLAY_FORM: 
         detail = React.createElement(DinoForm, {onDino: this.handleDinoSubmit});
         break;
 
-      case DISPLAY_DINO:
+      case DisplayEnum.DISPLAY_DINO:
         detail = (
           React.createElement(DinoDetail, {
             dino: this.state.displayDino, 
@@ -166,7 +168,7 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 });
 
 ReactDOM.render(
-  React.createElement(DinoApp, {url: "/api/dinos", pollInterval: 2000}),
+  React.createElement(DinoApp, {url: "/api/dinos", pollInterval: 500000}),
   document.getElementById('content')
 );
 },{"./dinoForm.jsx":2,"./dinodetail.jsx":3,"./dinolist.jsx":4}],2:[function(require,module,exports){
@@ -214,7 +216,7 @@ module.exports = React.createClass({displayName: "exports",
 					React.createElement("div", null, React.createElement("input", {type: "text", id: "species", value: this.state.species, onChange: this.changeSpecies, placeholder: "New dino's name"}))
 				), 
 				React.createElement("div", null, 
-					React.createElement("textarea", {rows: "4", cols: "40", value: this.state.content, onChange: this.changeContent, placeholder: "Fun facts about this dino"})
+					React.createElement("textarea", {rows: "4", cols: "100", value: this.state.content, onChange: this.changeContent, placeholder: "Fun facts about this dino"})
 				), 
 				React.createElement("div", null, 
 					React.createElement("button", null, "Add Dino!")
@@ -261,10 +263,12 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement(Editable, {onChange: this.changeSpecies, text: this.props.dino.species, tag: "h1"}), 
 				React.createElement(Editable, {onChange: this.changeContent, text: this.props.dino.content, tag: "p"}), 
-				React.createElement("p", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
-				React.createElement("button", {onClick: this.upvoteDino}, "+1"), 
-				React.createElement("button", {onClick: this.downvoteDino}, "-1"), 
-				React.createElement("button", {onClick: this.handleDinoDelete}, "Delete")
+				React.createElement("h2", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
+				React.createElement("div", {className: "buttons"}, 
+					React.createElement("button", {className: "upvote-button", onClick: this.upvoteDino}, "+1"), 
+					React.createElement("button", {className: "downvote-button", onClick: this.downvoteDino}, "-1"), 
+					React.createElement("button", {className: "delete-button", onClick: this.handleDinoDelete}, "Delete")
+				)
 			)
 		)
 	}
@@ -290,7 +294,7 @@ var DinoList = React.createClass({displayName: "DinoList",
 	render: function() {
 		var dinoList = this.props.dinos.map(function(dino, i){
 			return (
-				React.createElement("li", {onClick: this.handleDinoClick.bind(this, dino), key: i}, 
+				React.createElement("div", {className: "dino-label", onClick: this.handleDinoClick.bind(this, dino), key: i}, 
 					dino.species
 				)
 			);
@@ -298,15 +302,14 @@ var DinoList = React.createClass({displayName: "DinoList",
 
 		return (
 			React.createElement("div", {id: "dino-list-container"}, 
-				React.createElement("div", {id: "dino-list-header"}, 
-					React.createElement("div", {id: "list-title"}, React.createElement("h1", null, "Dinos")), 
-					React.createElement("div", {id: "list-plus"}, React.createElement("button", {id: "add-dino", onClick: this.props.onAddDino}, "+"))
+				React.createElement("div", {id: "list-plus"}, 
+					React.createElement("button", {id: "add-dino", onClick: this.props.onAddDino}, 
+						"Add a Dino"
+					)
 				), 
 
 				React.createElement("div", {id: "dino-list"}, 
-					React.createElement("ul", null, 
-						dinoList
-					)
+					dinoList
 				)
 			)
 		)
@@ -318,17 +321,16 @@ module.exports = DinoList;
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
-      return React.createElement("h1", {onBlur: this.commitChange, 
-                contentEditable: true}, this.props.text);
+      return React.createElement("h1", {spellcheck: "false", 
+                onBlur: this.commitChange, 
+                contentEditable: true}, this.props.text
+              );
     } else {
-      return React.createElement("p", {onBlur: this.commitChange, 
+      return React.createElement("p", {spellcheck: "false", 
+                onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text);
     }
   },
-
-  // shouldComponentUpdate: function(nextProps) {
-  //   return nextProps.html !== this.getDOMNode().innerHTML;
-  // },
 
   commitChange: function() {
     var html = ReactDOM.findDOMNode(this).innerHTML; //this.getDOMNode().innerHTML;

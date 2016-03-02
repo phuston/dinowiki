@@ -36,10 +36,12 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement(Editable, {onChange: this.changeSpecies, text: this.props.dino.species, tag: "h1"}), 
 				React.createElement(Editable, {onChange: this.changeContent, text: this.props.dino.content, tag: "p"}), 
-				React.createElement("p", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
-				React.createElement("button", {onClick: this.upvoteDino}, "+1"), 
-				React.createElement("button", {onClick: this.downvoteDino}, "-1"), 
-				React.createElement("button", {onClick: this.handleDinoDelete}, "Delete")
+				React.createElement("h2", null, "RATING: ", this.props.dino.upvotes - this.props.dino.downvotes), 
+				React.createElement("div", {className: "buttons"}, 
+					React.createElement("button", {className: "upvote-button", onClick: this.upvoteDino}, "+1"), 
+					React.createElement("button", {className: "downvote-button", onClick: this.downvoteDino}, "-1"), 
+					React.createElement("button", {className: "delete-button", onClick: this.handleDinoDelete}, "Delete")
+				)
 			)
 		)
 	}
@@ -50,17 +52,16 @@ module.exports = DinoDetail;
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
-      return React.createElement("h1", {onBlur: this.commitChange, 
-                contentEditable: true}, this.props.text);
+      return React.createElement("h1", {spellcheck: "false", 
+                onBlur: this.commitChange, 
+                contentEditable: true}, this.props.text
+              );
     } else {
-      return React.createElement("p", {onBlur: this.commitChange, 
+      return React.createElement("p", {spellcheck: "false", 
+                onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text);
     }
   },
-
-  // shouldComponentUpdate: function(nextProps) {
-  //   return nextProps.html !== this.getDOMNode().innerHTML;
-  // },
 
   commitChange: function() {
     var html = ReactDOM.findDOMNode(this).innerHTML; //this.getDOMNode().innerHTML;
