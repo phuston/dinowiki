@@ -58,13 +58,16 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoEdit: function(editDino){
+    console.log(editDino);
 		var oldDinos = this.state.dinos;
 
 		// Optimistic updating of Dinos
     var editedDinos = this.state.dinos.map(function(dino){
-      if (dino.id == editDino.id) {
+      if (dino._id == editDino._id) {
+        dino.species = dino.species;
         dino.content = editDino.content;
-        dino.votes = editDino.votes;
+        dino.upvotes = editDino.upvotes;
+        dino.downvotes = editDino.downvotes;
       }
       return dino;
     });
@@ -86,13 +89,15 @@ var DinoApp = React.createClass({
 	},
 
 	handleDinoDelete: function(deleteDino){
+    console.log(deleteDino)
+
 		var oldDinos = this.state.dinos;
 
 		var deletedDinos = this.state.dinos.filter(function(dino){
-			return dino.id != deleteDino.id;
+			return dino._id != deleteDino._id;
 		});
 
-		this.setState({dinos: deletedDinos});
+		this.setState({dinos: deletedDinos, detailDisplay: DISPLAY_NONE});
 
 		$.ajax({
 			url: this.props.url,
@@ -123,7 +128,9 @@ var DinoApp = React.createClass({
     switch(this.state.detailDisplay){
       case DISPLAY_NONE:
         detail = (
-          <h1>LOGO OR SOMETHING</h1>
+          <div>
+            <img id='logo' src="../images/dino.png" width="70%"/>
+          </div>
         )
         break;
 
@@ -135,6 +142,8 @@ var DinoApp = React.createClass({
         detail = (
           <DinoDetail
             dino={this.state.displayDino}
+            onEditDino={this.handleDinoEdit}
+            handleDinoDelete={this.handleDinoDelete}
           />
         )
         break;
@@ -153,11 +162,9 @@ var DinoApp = React.createClass({
       </div>
     )
 	}
-
-
 });
 
 ReactDOM.render(
-  <DinoApp url="/api/dinos" pollInterval={2000} />,
+  <DinoApp url="/api/dinos" pollInterval={2} />,
   document.getElementById('content')
 );

@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-	var info = req.body;
+	var dino = req.body;
 	(new Dino(req.body)).save(function(err, dino) {
 		if (!err) {
 			res.send(dino);
@@ -28,17 +28,19 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/', function(req, res, next) {
-	var info = req.body;
-	var dinoId = new ObjectId(info.id);
+	console.log(req.body);
+	var body = req.body;
+	var dinoId = new ObjectId(body._id);
 
 	Dino.findOne({
 		'_id': dinoId
 	}, function(err, dino) {
+		console.log(dino);
 		if (!err) {
-			if (info.species) dino.species = info.species;
-			if (info.content) dino.content = info.content;
-			if (info.upvotes) dino.upvotes = info.upvotes;
-			if (info.downvotes) dino.downvotes = info.downvotes;
+			dino.species = body.species;
+			dino.content = body.content;
+			dino.upvotes = body.upvotes;
+			dino.downvotes = body.downvotes;
 			dino.save(function(err) {
 				if (err) {
 					console.log(err);
@@ -55,9 +57,9 @@ router.put('/', function(req, res, next) {
 });
 
 router.delete('/', function(req, res, next) {
-	var info = req.body;
+	var body = req.body;
 	Dino.findOne({
-		'_id': new ObjectId(info.id)
+		'_id': new ObjectId(body._id)
 	}).remove(function(err, dino) {
 		if (!err) {
 			res.send(dino);
