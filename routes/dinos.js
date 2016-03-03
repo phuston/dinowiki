@@ -20,6 +20,7 @@ router.post('/', function(req, res, next) {
 		if (!err) {
 			res.send(dino);
 		} else {
+			console.log(err);
 			res.send(err);
 		}
 	})

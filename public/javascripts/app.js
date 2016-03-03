@@ -40,10 +40,10 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	handleDinoSubmit: function(newDino){
     console.log(newDino);
 		var oldDinos = this.state.dinos;
-		var optimisticDinos = [newDino].concat(this.state.dinos);
-    console.log(optimisticDinos);
+		// var optimisticDinos = [newDino].concat(this.state.dinos);
+    // console.log(optimisticDinos);
 
-		this.setState({dinos: optimisticDinos});
+		// this.setState({dinos: optimisticDinos});
 
     $.ajax({
     	url: this.props.url,
@@ -52,7 +52,9 @@ var DinoApp = React.createClass({displayName: "DinoApp",
     	data: newDino,
     	success: function(newDino){
         console.log(newDino);
-    		this.setState({dinos: [newDino].concat(oldDinos)});
+        if (!newDino.code) {
+          this.setState({dinos: oldDinos.concat([newDino])});
+        }
     	}.bind(this),
 			error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -280,37 +282,57 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 module.exports = DinoDetail;
 },{"./editable.jsx":5}],4:[function(require,module,exports){
 var DinoList = React.createClass({displayName: "DinoList",
+	getInitialState: function() {
+    return {
+    	selectedDino: null
+    };
+	},
+
 	componentDidMount: function() {
 	    return
 	},
 
 	// Show dino in dinodetail
-	handleDinoClick: function(dino) {
+	handleDinoClick: function(dino, i) {
 		// console.log(dino);
+		this.setState({selectedDino: i});
 		this.props.onDisplayDino(dino);
 	},
 
 	handleAddDino: function() {
-		this.props.showDinoForm();
+		this.setState({selectedDino: 'add'});
+		this.props.onAddDino();
 	},
 
 	render: function() {
+		console.log("CALLED", this.state.selectedDino);
 		var dinoList = this.props.dinos.map(function(dino, i){
+			var style = {};
+			if (i === this.state.selectedDino) {
+				style = {'background': '#FC3468'}
+			}
 			return (
-				React.createElement("div", {className: "dino-label", onClick: this.handleDinoClick.bind(this, dino), key: i}, 
+				React.createElement("div", {style: style, 
+							className: "dino-label", 
+							onClick: this.handleDinoClick.bind(this, dino, i), 
+							key: i}, 
 					dino.species
 				)
 			);
 		}, this);
 
+		var styleAdd;
+		if (this.state.selectedDino === 'add') {
+			styleAdd = {'background': '#777777'};
+		}
+
 		return (
 			React.createElement("div", {id: "dino-list-container"}, 
-				React.createElement("div", {id: "list-plus"}, 
-					React.createElement("button", {id: "add-dino", onClick: this.props.onAddDino}, 
+				React.createElement("div", {className: "list-button"}, 
+					React.createElement("button", {style: styleAdd, id: "add-dino", onClick: this.handleAddDino}, 
 						"Add a Dino"
 					)
 				), 
-
 				React.createElement("div", {id: "dino-list"}, 
 					dinoList
 				)
@@ -324,12 +346,12 @@ module.exports = DinoList;
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
-      return React.createElement("h1", {spellcheck: "false", 
+      return React.createElement("h1", {spellCheck: "false", 
                 onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text
               );
     } else {
-      return React.createElement("p", {spellcheck: "false", 
+      return React.createElement("p", {spellCheck: "false", 
                 onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text);
     }

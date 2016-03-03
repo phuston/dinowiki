@@ -1,12 +1,12 @@
 module.exports = React.createClass({
   render: function() {
     if (this.props.tag === 'h1') {
-      return <h1 spellcheck='false'
+      return <h1 spellCheck='false'
                 onBlur={this.commitChange}
                 contentEditable>{this.props.text}
               </h1>;
     } else {
-      return <p spellcheck='false'
+      return <p spellCheck='false'
                 onBlur={this.commitChange}
                 contentEditable>{this.props.text}</p>;
     }

@@ -52,12 +52,12 @@ module.exports = DinoDetail;
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
-      return React.createElement("h1", {spellcheck: "false", 
+      return React.createElement("h1", {spellCheck: "false", 
                 onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text
               );
     } else {
-      return React.createElement("p", {spellcheck: "false", 
+      return React.createElement("p", {spellCheck: "false", 
                 onBlur: this.commitChange, 
                 contentEditable: true}, this.props.text);
     }

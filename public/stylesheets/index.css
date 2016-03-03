@@ -49,9 +49,9 @@ input:focus {
   overflow: hidden;
   border-right: 1px solid black; }
 
-#list-plus {
+.list-button {
   width: 92%;
-  margin: 3% 4% 0%; }
+  margin: 2% 4% 0%; }
 
 .dino-label {
   padding: 4%;
@@ -76,6 +76,18 @@ input:focus {
 
 #add-dino:hover {
   background: #777777; }
+
+#report-dino {
+  color: white;
+  background: #FE3939;
+  border: none;
+  width: 100%;
+  font-size: 23px;
+  padding-bottom: 1%;
+  font-weight: bold; }
+
+#report-dino:hover {
+  background: #BA0000; }
 
 #main-container {
   padding: 5px;
@@ -105,9 +117,9 @@ div#dino-detail-container h2 {
 
 div#dino-detail-container button {
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  margin: 0.1%;
+  margin: 0.2%;
   width: 7%; }
 
 div.buttons {
@@ -160,6 +172,36 @@ form#addForm button {
 form#addForm button:hover {
   background: #2277AA; }
 
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
+/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=index.scss.map */
 /*# sourceMappingURL=index.css.map */
 /*# sourceMappingURL=index.scss.map */
 /*# sourceMappingURL=index.css.map */

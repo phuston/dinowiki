@@ -39,10 +39,6 @@ var DinoApp = React.createClass({
 	handleDinoSubmit: function(newDino){
     console.log(newDino);
 		var oldDinos = this.state.dinos;
-		var optimisticDinos = [newDino].concat(this.state.dinos);
-    console.log(optimisticDinos);
-
-		this.setState({dinos: optimisticDinos});
 
     $.ajax({
     	url: this.props.url,
@@ -51,7 +47,9 @@ var DinoApp = React.createClass({
     	data: newDino,
     	success: function(newDino){
         console.log(newDino);
-    		this.setState({dinos: [newDino].concat(oldDinos)});
+        if (!newDino.code) {
+          this.setState({dinos: oldDinos.concat([newDino])});
+        }
     	}.bind(this),
 			error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());

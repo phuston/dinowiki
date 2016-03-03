@@ -62,9 +62,9 @@ input:focus {
   border-right: 1px solid black;
 }
 
-#list-plus {
+.list-button {
   width: 92%;
-  margin: 3% 4% 0%;
+  margin: 2% 4% 0%;
 }
 
 .dino-label {
@@ -130,9 +130,9 @@ div#dino-detail-container h2 {
 
 div#dino-detail-container button {
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  margin: 0.1%;
+  margin: 0.2%;
   width: 7%;
 }
 
