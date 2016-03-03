@@ -31,6 +31,12 @@ var DinoDetail = React.createClass({
 	},
 
 	render: function(){
+		if (this.props.dino.img) {
+			console.log(this.props.dino.img);
+			var img = (<div id='dino-image'>
+									<img src={this.props.dino.img}/>
+								</div>);
+		}
 		return (
 			<div id="dino-detail-container">
 				<Editable onChange={this.changeSpecies} text={this.props.dino.species} tag={"h1"}/>
@@ -41,6 +47,7 @@ var DinoDetail = React.createClass({
 					<button className='downvote-button' onClick={this.downvoteDino}>-1</button>
 					<button className='delete-button' onClick={this.handleDinoDelete}>Delete</button>
 				</div>
+				{img}
 			</div>
 		)
 	}

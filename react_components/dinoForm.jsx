@@ -3,6 +3,7 @@ module.exports = React.createClass({
 	    return {
 	    	species: '',
 	    	content: '',
+	    	img: ''
 	    };
 	},
 	changeSpecies: function(ev) {
@@ -15,6 +16,11 @@ module.exports = React.createClass({
 			content: ev.target.value
 		});
 	},
+	changeImg: function(ev) {
+		this.setState({
+			img: ev.target.value
+		});
+	},
 	addDino: function(ev) {
 		ev.preventDefault();
 
@@ -25,12 +31,14 @@ module.exports = React.createClass({
 
 		this.props.onDino({
 			species: this.state.species,
-			content: this.state.content
+			content: this.state.content,
+			img: this.state.img
 		});
 
 		this.setState({
 			species: '',
-			content: ''
+			content: '',
+			img: '',
 		});
 
 		// console.log(this.state.name, this.state.content);
@@ -43,6 +51,9 @@ module.exports = React.createClass({
 				</div>
 				<div>
 					<textarea rows='4' cols='100' value={this.state.content} onChange={this.changeContent} placeholder="Fun facts about this dino"></textarea>
+				</div>
+				<div>
+					<div><input type='text' id='imgsrc' value={this.state.img} onChange={this.changeImg} placeholder="Link a photo of your dino"/></div>
 				</div>
 				<div>
 					<button>Add Dino!</button>

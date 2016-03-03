@@ -32,6 +32,12 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 	},
 
 	render: function(){
+		if (this.props.dino.img) {
+			console.log(this.props.dino.img);
+			var img = (React.createElement("div", {id: "dino-image"}, 
+									React.createElement("img", {src: this.props.dino.img})
+								));
+		}
 		return (
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement(Editable, {onChange: this.changeSpecies, text: this.props.dino.species, tag: "h1"}), 
@@ -41,7 +47,8 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 					React.createElement("button", {className: "upvote-button", onClick: this.upvoteDino}, "+1"), 
 					React.createElement("button", {className: "downvote-button", onClick: this.downvoteDino}, "-1"), 
 					React.createElement("button", {className: "delete-button", onClick: this.handleDinoDelete}, "Delete")
-				)
+				), 
+				img
 			)
 		)
 	}

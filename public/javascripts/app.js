@@ -40,10 +40,6 @@ var DinoApp = React.createClass({displayName: "DinoApp",
 	handleDinoSubmit: function(newDino){
     console.log(newDino);
 		var oldDinos = this.state.dinos;
-		// var optimisticDinos = [newDino].concat(this.state.dinos);
-    // console.log(optimisticDinos);
-
-		// this.setState({dinos: optimisticDinos});
 
     $.ajax({
     	url: this.props.url,
@@ -182,6 +178,7 @@ module.exports = React.createClass({displayName: "exports",
 	    return {
 	    	species: '',
 	    	content: '',
+	    	img: ''
 	    };
 	},
 	changeSpecies: function(ev) {
@@ -194,6 +191,11 @@ module.exports = React.createClass({displayName: "exports",
 			content: ev.target.value
 		});
 	},
+	changeImg: function(ev) {
+		this.setState({
+			img: ev.target.value
+		});
+	},
 	addDino: function(ev) {
 		ev.preventDefault();
 
@@ -204,12 +206,14 @@ module.exports = React.createClass({displayName: "exports",
 
 		this.props.onDino({
 			species: this.state.species,
-			content: this.state.content
+			content: this.state.content,
+			img: this.state.img
 		});
 
 		this.setState({
 			species: '',
-			content: ''
+			content: '',
+			img: '',
 		});
 
 		// console.log(this.state.name, this.state.content);
@@ -222,6 +226,9 @@ module.exports = React.createClass({displayName: "exports",
 				), 
 				React.createElement("div", null, 
 					React.createElement("textarea", {rows: "4", cols: "100", value: this.state.content, onChange: this.changeContent, placeholder: "Fun facts about this dino"})
+				), 
+				React.createElement("div", null, 
+					React.createElement("div", null, React.createElement("input", {type: "text", id: "imgsrc", value: this.state.img, onChange: this.changeImg, placeholder: "Link a photo of your dino"}))
 				), 
 				React.createElement("div", null, 
 					React.createElement("button", null, "Add Dino!")
@@ -264,6 +271,12 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 	},
 
 	render: function(){
+		if (this.props.dino.img) {
+			console.log(this.props.dino.img);
+			var img = (React.createElement("div", {id: "dino-image"}, 
+									React.createElement("img", {src: this.props.dino.img})
+								));
+		}
 		return (
 			React.createElement("div", {id: "dino-detail-container"}, 
 				React.createElement(Editable, {onChange: this.changeSpecies, text: this.props.dino.species, tag: "h1"}), 
@@ -273,7 +286,8 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 					React.createElement("button", {className: "upvote-button", onClick: this.upvoteDino}, "+1"), 
 					React.createElement("button", {className: "downvote-button", onClick: this.downvoteDino}, "-1"), 
 					React.createElement("button", {className: "delete-button", onClick: this.handleDinoDelete}, "Delete")
-				)
+				), 
+				img
 			)
 		)
 	}

@@ -77,18 +77,6 @@ input:focus {
 #add-dino:hover {
   background: #777777; }
 
-#report-dino {
-  color: white;
-  background: #FE3939;
-  border: none;
-  width: 100%;
-  font-size: 23px;
-  padding-bottom: 1%;
-  font-weight: bold; }
-
-#report-dino:hover {
-  background: #BA0000; }
-
 #main-container {
   padding: 5px;
   float: right;
@@ -124,6 +112,14 @@ div#dino-detail-container button {
 
 div.buttons {
   text-align: center; }
+
+div#dino-image {
+  margin-top: 4%;
+  text-align: center; }
+
+div#dino-image img {
+  max-height: 50%;
+  max-width: 50%; }
 
 div#dino-detail-container button.upvote-button {
   background: #7DF481; }
@@ -172,36 +168,6 @@ form#addForm button {
 form#addForm button:hover {
   background: #2277AA; }
 
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
-/*# sourceMappingURL=index.css.map */
-/*# sourceMappingURL=index.scss.map */
 /*# sourceMappingURL=index.css.map */
 /*# sourceMappingURL=index.scss.map */
 /*# sourceMappingURL=index.css.map */
