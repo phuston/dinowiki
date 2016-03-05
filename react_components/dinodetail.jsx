@@ -1,3 +1,5 @@
+// Display of chosen dino from dinolist sidebar
+
 var Editable = require('./editable.jsx');
 
 var DinoDetail = React.createClass({

@@ -1,3 +1,5 @@
+// Add form to add new dino
+
 module.exports = React.createClass({
 	getInitialState: function() {
 	    return {

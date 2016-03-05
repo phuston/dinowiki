@@ -1,3 +1,5 @@
+// Editable component for editing
+
 module.exports = React.createClass({
   render: function() {
     if (this.props.tag === 'h1') {
@@ -13,7 +15,7 @@ module.exports = React.createClass({
   },
 
   commitChange: function() {
-    var html = ReactDOM.findDOMNode(this).innerHTML; //this.getDOMNode().innerHTML;
+    var html = ReactDOM.findDOMNode(this).innerHTML;
     this.props.onChange(html);
   }
 });

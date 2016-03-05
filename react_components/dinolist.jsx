@@ -1,3 +1,5 @@
+// Side bar list of dinosaur names
+
 var DinoList = React.createClass({
 	getInitialState: function() {
     return {

@@ -3,7 +3,7 @@ var router = express.Router();
 var Dino = require('./../models/dino');
 var ObjectId = require('mongoose').Types.ObjectId;
 
-/* GET all dinos. */
+// GET all dinos
 router.get('/', function(req, res, next) {
   Dino.find(function(err, dinos) {
   	if (!err) {
@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   })
 });
 
+// POST a new dino
 router.post('/', function(req, res, next) {
 	var dino = req.body;
 	(new Dino(req.body)).save(function(err, dino) {
@@ -26,6 +27,7 @@ router.post('/', function(req, res, next) {
 	})
 });
 
+// EDIT a dino
 router.put('/', function(req, res, next) {
 	var body = req.body;
 	var dinoId = new ObjectId(body._id);
@@ -51,6 +53,7 @@ router.put('/', function(req, res, next) {
 	})
 });
 
+// DELETE a dino
 router.delete('/', function(req, res, next) {
 	var body = req.body;
 	Dino.findOne({

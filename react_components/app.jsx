@@ -1,3 +1,5 @@
+// Top component of app.
+
 var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
 var DinoForm = require('./dinoForm.jsx');
