@@ -1,6 +1,7 @@
 // Editable component for editing
 
 module.exports = React.createClass({
+  // render is usually last
   render: function() {
     if (this.props.tag === 'h1') {
       return <h1 spellCheck='false'

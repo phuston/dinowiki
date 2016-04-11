@@ -1,4 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// Top component of app.
+
 var DinoList = require('./dinolist.jsx');
 var DinoDetail = require('./dinodetail.jsx');
 var DinoForm = require('./dinoForm.jsx');
@@ -173,6 +175,8 @@ ReactDOM.render(
   document.getElementById('content')
 );
 },{"./dinoForm.jsx":2,"./dinodetail.jsx":3,"./dinolist.jsx":4}],2:[function(require,module,exports){
+// Add form to add new dino
+
 module.exports = React.createClass({displayName: "exports",
 	getInitialState: function() {
 	    return {
@@ -238,6 +242,8 @@ module.exports = React.createClass({displayName: "exports",
 	}
 })
 },{}],3:[function(require,module,exports){
+// Display of chosen dino from dinolist sidebar
+
 var Editable = require('./editable.jsx');
 
 var DinoDetail = React.createClass({displayName: "DinoDetail",
@@ -295,6 +301,8 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 
 module.exports = DinoDetail;
 },{"./editable.jsx":5}],4:[function(require,module,exports){
+// Side bar list of dinosaur names
+
 var DinoList = React.createClass({displayName: "DinoList",
 	getInitialState: function() {
     return {
@@ -357,6 +365,8 @@ var DinoList = React.createClass({displayName: "DinoList",
 
 module.exports = DinoList;
 },{}],5:[function(require,module,exports){
+// Editable component for editing
+
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
@@ -372,7 +382,7 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   commitChange: function() {
-    var html = ReactDOM.findDOMNode(this).innerHTML; //this.getDOMNode().innerHTML;
+    var html = ReactDOM.findDOMNode(this).innerHTML;
     this.props.onChange(html);
   }
 });

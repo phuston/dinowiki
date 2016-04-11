@@ -4,6 +4,7 @@ var Dino = require('./../models/dino');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 // GET all dinos
+// weird indenting here, you should probably convert tabs to spaces in your editor or atleast make sure to be consistent to use one over the other
 router.get('/', function(req, res, next) {
   Dino.find(function(err, dinos) {
   	if (!err) {
@@ -17,6 +18,7 @@ router.get('/', function(req, res, next) {
 // POST a new dino
 router.post('/', function(req, res, next) {
 	var dino = req.body;
+        //Dino.create would be a bit more concise
 	(new Dino(req.body)).save(function(err, dino) {
 		if (!err) {
 			res.send(dino);
@@ -32,6 +34,7 @@ router.put('/', function(req, res, next) {
 	var body = req.body;
 	var dinoId = new ObjectId(body._id);
 
+        //findByIdAndUpdate
 	Dino.findOne({
 		'_id': dinoId
 	}, function(err, dino) {
@@ -56,6 +59,7 @@ router.put('/', function(req, res, next) {
 // DELETE a dino
 router.delete('/', function(req, res, next) {
 	var body = req.body;
+        // could use findByIdAndRemove(I
 	Dino.findOne({
 		'_id': new ObjectId(body._id)
 	}).remove(function(err, dino) {
