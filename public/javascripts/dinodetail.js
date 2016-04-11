@@ -1,4 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// Display of chosen dino from dinolist sidebar
+
 var Editable = require('./editable.jsx');
 
 var DinoDetail = React.createClass({displayName: "DinoDetail",
@@ -56,6 +58,8 @@ var DinoDetail = React.createClass({displayName: "DinoDetail",
 
 module.exports = DinoDetail;
 },{"./editable.jsx":2}],2:[function(require,module,exports){
+// Editable component for editing
+
 module.exports = React.createClass({displayName: "exports",
   render: function() {
     if (this.props.tag === 'h1') {
@@ -71,7 +75,7 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   commitChange: function() {
-    var html = ReactDOM.findDOMNode(this).innerHTML; //this.getDOMNode().innerHTML;
+    var html = ReactDOM.findDOMNode(this).innerHTML;
     this.props.onChange(html);
   }
 });

@@ -9,4 +9,5 @@ var Dino = new Schema({
 	img: {type: String}
 }, {collection: 'Dino'});
 
+// probably don't need to specify collection twice
 module.exports = mongoose.model('Dino', Dino);

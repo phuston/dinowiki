@@ -4,6 +4,7 @@ var Editable = require('./editable.jsx');
 
 var DinoDetail = React.createClass({
 	upvoteDino: function() {
+        //note Object.assign isn't available on all browsers, you should probably use babel if you are going to use es6 methods
 		var editedDino = Object.assign({}, this.props.dino);
 		editedDino.upvotes += 1;
 		this.props.onEditDino(editedDino);
